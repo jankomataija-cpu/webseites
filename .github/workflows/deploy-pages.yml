@@ -1,0 +1,51 @@
+name: Website zu GitHub Pages deployen
+
+on:
+  push:
+    branches: [claude/custom-website-skills-x2ii74]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: oasi-del-gusto/package-lock.json
+      - name: Abhängigkeiten installieren
+        run: npm ci
+        working-directory: oasi-del-gusto
+      - name: Seite bauen
+        run: npm run build
+        working-directory: oasi-del-gusto
+      - name: GitHub Pages aktivieren
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+      - name: Export hochladen
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: oasi-del-gusto/out
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Auf GitHub Pages veröffentlichen
+        id: deployment
+        uses: actions/deploy-pages@v4

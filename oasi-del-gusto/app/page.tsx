@@ -37,42 +37,42 @@ const spezialitaeten = [
     name: 'Spaghetti-Eis',
     text: 'Der Klassiker: cremiges Vanilleeis, fruchtige Erdbeersoße und weiße Schokoraspeln.',
     img: IMG.spaghetti,
-    fallback: '/images/fallback-spaghetti.svg',
+    fallback: 'images/fallback-spaghetti.svg',
   },
   {
     name: 'Affogato al Caffè',
     text: 'Hausgemachtes Vanilleeis, „ertränkt" in heißem italienischem Espresso.',
     img: IMG.affogato,
-    fallback: '/images/fallback-affogato.svg',
+    fallback: 'images/fallback-affogato.svg',
   },
   {
     name: 'Mohrenkopfbecher',
     text: 'Unsere Hausspezialität – mit Schokokuss, Sahne und dunkler Schokoladensoße.',
     img: IMG.mohrenkopf,
-    fallback: '/images/fallback-mohrenkopf.svg',
+    fallback: 'images/fallback-mohrenkopf.svg',
   },
   {
     name: 'Frucht & Sorbet',
     text: 'Täglich frisch aus eigener Produktion – nur natürliche Zutaten, voller Geschmack.',
     img: IMG.sorbet,
-    fallback: '/images/fallback-sorbet.svg',
+    fallback: 'images/fallback-sorbet.svg',
   },
 ];
 
 const galerie = [
   {
     src: IMG.galerie1,
-    fallback: '/images/fallback-galerie1.svg',
+    fallback: 'images/fallback-galerie1.svg',
     caption: 'Unsere Eistheke – jeden Tag frisch',
   },
   {
     src: IMG.galerie2,
-    fallback: '/images/fallback-galerie2.svg',
+    fallback: 'images/fallback-galerie2.svg',
     caption: 'Caffè & Dolci wie in Italien',
   },
   {
     src: IMG.galerie3,
-    fallback: '/images/fallback-galerie3.svg',
+    fallback: 'images/fallback-galerie3.svg',
     caption: 'Dolce Vita am Marktplatz',
   },
 ];
@@ -353,7 +353,7 @@ function MainContent() {
       {/* Footer */}
       <footer className='border-t border-cream/10 py-10 text-center text-sm text-cream/50'>
         <Image
-          src='/logo.svg'
+          src='logo.svg'
           alt='Oasi del Gusto'
           width={140}
           height={83}
@@ -378,9 +378,9 @@ export default function Home() {
         mediaType='image'
         mediaSrc={IMG.heroMedia}
         bgImageSrc={IMG.heroBg}
-        mediaFallbackSrc='/images/fallback-hero.svg'
-        bgFallbackSrc='/images/fallback-bg.svg'
-        logoSrc='/logo.svg'
+        mediaFallbackSrc='images/fallback-hero.svg'
+        bgFallbackSrc='images/fallback-bg.svg'
+        logoSrc='logo.svg'
         title='Oasi del Gusto'
         date='Gelateria · Caffè · Spaichingen'
         scrollToExpand='Scrollen zum Entdecken'
