@@ -77,6 +77,97 @@ const galerie = [
   },
 ];
 
+const speisekarte: {
+  kategorie: string;
+  items: { nr: string; name: string; desc: string; preis: string }[];
+}[] = [
+  {
+    kategorie: 'Crêpes',
+    items: [
+      { nr: '400', name: 'Erdbeer Crêpes', desc: 'Saisonbedingt – Vanilleeis, frische Erdbeeren, Erdbeersoße, Sahne und Puderzucker', preis: '6,50' },
+      { nr: '401', name: 'Erdbeer Nutella Crêpes', desc: 'Saisonbedingt – Vanilleeis, frische Erdbeeren, Nutellasoße, Sahne und Puderzucker', preis: '7,00' },
+      { nr: '402', name: 'Waldfrüchte Crêpes', desc: 'Vanilleeis, Waldfrüchte, Früchtesoße, Sahne und Puderzucker', preis: '7,00' },
+      { nr: '403', name: 'Banane Crêpes', desc: 'Vanilleeis, Banane, Schokosoße, Sahne und Puderzucker', preis: '6,50' },
+      { nr: '404', name: 'Banane Nutella Crêpes', desc: 'Vanilleeis, Banane, Nutellasoße, Sahne und Puderzucker', preis: '7,00' },
+      { nr: '405', name: 'Nutella Crêpes', desc: 'Vanilleeis, Nutellasoße, Sahne und Puderzucker', preis: '6,50' },
+      { nr: '406', name: 'Vanillesoße Crêpes', desc: 'Vanilleeis, Vanillesoße, Sahne und Puderzucker', preis: '6,70' },
+      { nr: '407', name: 'Joghurt Erdbeere Crêpes', desc: 'Saisonbedingt – Joghurteis, frischer Joghurt, frische Erdbeeren, Erdbeersoße, Sahne und Puderzucker', preis: '7,00' },
+      { nr: '416', name: 'Erdbeer Banane Crêpes', desc: 'Saisonbedingt – Vanilleeis, frische Erdbeeren, Banane, Nutellasoße, Sahne und Puderzucker', preis: '7,50' },
+    ],
+  },
+  {
+    kategorie: 'Panini',
+    items: [
+      { nr: '420', name: 'Panino Vegetariano', desc: 'Ciabattabrot mit Zucchini, Mozzarella, Tomaten, Rucola, Mayonnaise', preis: '6,50' },
+      { nr: '421', name: 'Panino Oasi', desc: 'Ciabattabrot belegt mit Parmaschinken, Mayonnaise, Mozzarella, Tomaten, grüner Salat', preis: '6,50' },
+      { nr: '422', name: 'Panino Josef', desc: 'Ciabattabrot belegt mit Parmaschinken, Mayonnaise, Mozzarella, Tomaten, Auberginen', preis: '6,50' },
+      { nr: '423', name: 'Panino Caprese', desc: 'Ciabattabrot mit Tomaten, Mozzarella, Öl und Pfeffer', preis: '5,00' },
+      { nr: '424', name: 'Panino Mariolino', desc: 'Ciabattabrot belegt mit italienischem Schinken, Mozzarella, grüner Salat, Mayonnaise', preis: '5,50' },
+      { nr: '425', name: 'Panino Tonno Cipolla', desc: 'Ciabattabrot mit Mayonnaise, Thunfisch und Zwiebeln', preis: '5,50' },
+      { nr: '426', name: 'Panino Salami', desc: 'Ciabattabrot, Salami, Tomatenstück, Mozzarella, Mayonnaise, grüner Salat', preis: '5,50' },
+      { nr: '427', name: 'Panino Calabrese', desc: 'Ciabattabrot, scharfe Salami, Mozzarella, Mayonnaise, grüner Salat', preis: '6,50' },
+    ],
+  },
+  {
+    kategorie: 'Toast',
+    items: [
+      { nr: '428', name: 'Toast Caprese', desc: 'Tomaten, Mozzarella, Öl und Pfeffer', preis: '3,80' },
+      { nr: '429', name: 'Toast Pollo', desc: 'Mit Mayonnaise, Speck, Hähnchen, Tomaten, Blattsalat und Mozzarella', preis: '4,80' },
+      { nr: '430', name: 'Toast Tonno', desc: 'Mit Mayonnaise und Thunfisch', preis: '4,20' },
+      { nr: '431', name: 'Toast Calabrese', desc: 'Scharfe Salami, Mozzarella, Tomaten, Mayonnaise', preis: '4,60' },
+      { nr: '670', name: 'Toast Valentino', desc: 'Mit Lachs, Frischkäse, Rucola', preis: '4,80' },
+    ],
+  },
+  {
+    kategorie: 'Piadina',
+    items: [
+      { nr: '432', name: 'Piadina Classica', desc: 'Mit Rucola, Parmaschinken und Mozzarella', preis: '5,20' },
+      { nr: '433', name: 'Piadina Salami', desc: 'Salami, Mozzarella, Tomatenstück, Mayonnaise, grüner Salat', preis: '5,20' },
+      { nr: '434', name: 'Piadina Pazzia', desc: 'Mit Tomate, Mais, Mozzarella, Blattsalat, Putenstreifen, Olivenöl, Balsamico-Essig, Oregano', preis: '5,80' },
+      { nr: '435', name: 'Piadina Tonno Cipolla', desc: 'Mit Mayonnaise und Thunfisch, Zwiebeln, Tomaten', preis: '4,80' },
+    ],
+  },
+  {
+    kategorie: 'Bruschetta',
+    items: [
+      { nr: '436', name: 'Bruschetta Margherita', desc: 'Tomatenstücke, Mozzarella, Oregano', preis: '5,50' },
+      { nr: '437', name: 'Bruschetta Salami e Olive', desc: 'Tomatenstücke, Mozzarella, Oregano, Salami, Oliven', preis: '6,00' },
+      { nr: '438', name: 'Bruschetta Primavera', desc: 'Tomatenstücke, Mozzarella, Oregano, gekochter Schinken, Pilze, Artischocken', preis: '6,00' },
+      { nr: '439', name: 'Bruschetta Tonno e Cipolla', desc: 'Tomatenstück, Mozzarella, Oregano, Öl, Thunfisch, Zwiebeln', preis: '6,00' },
+      { nr: '440', name: 'Bruschetta Vegetariana', desc: 'Tomatenstück, Mozzarella, Oregano, gegrillte Aubergine, gegrillte Zucchini und Rucola', preis: '6,00' },
+    ],
+  },
+  {
+    kategorie: 'Pizza',
+    items: [
+      { nr: '441', name: 'Pizza Margherita', desc: 'Tomatensauce, Mozzarella', preis: '6,50' },
+      { nr: '442', name: 'Pizza Salami und Oliven', desc: 'Tomatensauce, Mozzarella, Salami, Oliven', preis: '8,00' },
+      { nr: '660', name: 'Pizza Italia', desc: 'Tomatensauce, Rucola, Mozzarella, Parmesanstücke, Parmaschinken', preis: '9,00' },
+      { nr: '661', name: 'Pizza Tonno e Cipolla', desc: 'Tomatensauce, Mozzarella, Thunfisch, Zwiebeln', preis: '8,00' },
+      { nr: '662', name: 'Pizza Capricciosa', desc: 'Tomatensauce, Mozzarella, Schinken, Pilze, Artischocken, Oliven', preis: '9,50' },
+      { nr: '663', name: 'Pizza Hawaii', desc: 'Tomatensauce, Mozzarella, Schinken und Ananas', preis: '8,00' },
+    ],
+  },
+  {
+    kategorie: 'Sandwich',
+    items: [
+      { nr: '443', name: 'Parma Sandwich', desc: 'Bruschetta-Brot, Mozzarella und Parmaschinken, Majo', preis: '6,50' },
+      { nr: '444', name: 'Ital. Sandwich', desc: 'Bruschetta-Brot, Mozzarella, Schinken, Tomate und Salat, Majo', preis: '6,50' },
+      { nr: '445', name: 'Salami Sandwich', desc: 'Bruschetta-Brot, Mozzarella, Salami und Tomate, Majo', preis: '6,50' },
+      { nr: '446', name: 'Spezial Sandwich', desc: 'Bruschetta-Brot, Schinken, Mozzarella, Artischocken und Pilze, Majo', preis: '6,50' },
+    ],
+  },
+  {
+    kategorie: 'Fladenbrot Snacks',
+    items: [
+      { nr: '610', name: 'Fladenbrot Vegetariano', desc: 'Fladenbrot mit Zucchini, Mozzarella, Tomaten, Rucola, Mayonnaise', preis: '6,50' },
+      { nr: '611', name: 'Fladenbrot Valentino', desc: 'Fladenbrot belegt mit Lachs, Frischkäse, Zucchini, Rucola', preis: '6,50' },
+      { nr: '612', name: 'Fladenbrot Josef', desc: 'Fladenbrot belegt mit Parmaschinken, Mayonnaise, Mozzarella, Tomaten, Auberginen', preis: '6,50' },
+      { nr: '613', name: 'Fladenbrot Caprese', desc: 'Fladenbrot mit Tomaten, Mozzarella, Öl und Pfeffer', preis: '5,00' },
+    ],
+  },
+];
+
 function withFallback(fallback: string) {
   return (e: React.SyntheticEvent<HTMLImageElement>) => {
     const img = e.currentTarget;
@@ -227,6 +318,77 @@ function MainContent() {
             </article>
           ))}
         </div>
+      </section>
+
+      {/* Speisekarte */}
+      <section id='speisekarte' className='py-16 md:py-24'>
+        <div className='text-center mb-14' data-reveal>
+          <p className='text-gold tracking-[0.35em] text-sm mb-4 uppercase'>
+            Il nostro menù
+          </p>
+          <h3 className='font-display text-3xl md:text-5xl text-cream'>
+            Unsere Speisekarte
+          </h3>
+        </div>
+
+        <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+          {speisekarte.map((kat) => (
+            <div
+              key={kat.kategorie}
+              data-card
+              className='rounded-2xl bg-cocoa-light ring-1 ring-cream/10 p-8'
+            >
+              <h4 className='font-display italic text-3xl text-sand mb-6 text-center'>
+                {kat.kategorie}
+              </h4>
+              <ul className='space-y-5'>
+                {kat.items.map((item) => (
+                  <li key={item.nr}>
+                    <div className='flex items-baseline gap-3'>
+                      <span className='text-cream/40 text-xs shrink-0 w-7'>
+                        {item.nr}.
+                      </span>
+                      <span className='font-display text-lg text-cream'>
+                        {item.name}
+                      </span>
+                      <span className='flex-1 border-b border-dotted border-cream/25 translate-y-[-4px]' />
+                      <span className='font-display text-lg text-gold shrink-0'>
+                        {item.preis} €
+                      </span>
+                    </div>
+                    <p className='text-sm text-cream/60 leading-relaxed mt-1 pl-10'>
+                      {item.desc}
+                    </p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+
+          {/* Tagliere-Highlight */}
+          <div
+            data-card
+            className='rounded-2xl bg-gradient-to-br from-terracotta/25 to-cocoa-light ring-1 ring-gold/30 p-8 flex flex-col items-center justify-center text-center'
+          >
+            <p className='text-gold tracking-[0.3em] text-xs mb-3 uppercase'>
+              Für den großen Appetit
+            </p>
+            <h4 className='font-display italic text-3xl text-sand mb-3'>
+              Tagliere della Casa
+            </h4>
+            <p className='text-cream/70 mb-4 max-w-xs'>
+              Italienische Spezialitäten: Aufschnitt, Käse und Gemüse – perfekt
+              zum Teilen.
+            </p>
+            <p className='font-display text-3xl text-gold'>25,00 €</p>
+            <p className='text-cream/40 text-xs mt-1'>Nr. 460</p>
+          </div>
+        </div>
+
+        <p className='text-center text-cream/40 text-sm mt-8' data-reveal>
+          Alle Angaben zu Allergenen und Zusatzstoffen findest du in der Karte
+          vor Ort. Saisonale Gerichte je nach Verfügbarkeit.
+        </p>
       </section>
 
       {/* Galerie mit Parallax */}
