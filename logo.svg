@@ -10,10 +10,10 @@
     </linearGradient>
     <linearGradient id="scoop3" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#f7ecd7"/>
-      <stop offset="1" stop-color="#e8d5ae"/>
+      <stop offset="1" stop-color="#e3c97a"/>
     </linearGradient>
     <linearGradient id="cone" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#d9a441"/>
+      <stop offset="0" stop-color="#c9a24b"/>
       <stop offset="1" stop-color="#a8742a"/>
     </linearGradient>
   </defs>
@@ -28,17 +28,17 @@
   </g>
 
   <!-- Wortmarke -->
-  <text x="220" y="182" text-anchor="middle" fill="#f7f2e9"
+  <text x="220" y="182" text-anchor="middle" fill="#f0e6d2"
     font-family="Georgia, 'Times New Roman', serif" font-style="italic" font-size="52" font-weight="600" letter-spacing="1">
     Oasi del Gusto
   </text>
 
   <!-- Trennlinie -->
-  <line x1="96" y1="204" x2="176" y2="204" stroke="#d9a441" stroke-width="1.5"/>
-  <circle cx="220" cy="204" r="3" fill="#d9a441"/>
-  <line x1="264" y1="204" x2="344" y2="204" stroke="#d9a441" stroke-width="1.5"/>
+  <line x1="96" y1="204" x2="176" y2="204" stroke="#c9a24b" stroke-width="1.5"/>
+  <circle cx="220" cy="204" r="3" fill="#c9a24b"/>
+  <line x1="264" y1="204" x2="344" y2="204" stroke="#c9a24b" stroke-width="1.5"/>
 
-  <text x="220" y="236" text-anchor="middle" fill="#e8d5ae"
+  <text x="220" y="236" text-anchor="middle" fill="#e3c97a"
     font-family="Georgia, serif" font-size="17" letter-spacing="7">
     GELATERIA · CAFFÈ
   </text>
