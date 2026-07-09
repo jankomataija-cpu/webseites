@@ -263,7 +263,7 @@ function MainContent() {
     <div ref={mainRef} className='max-w-6xl mx-auto'>
       {/* Intro */}
       <section className='py-10 md:py-20 text-center' data-reveal>
-        <p className='text-gold tracking-[0.35em] text-sm mb-6 uppercase'>
+        <p className='eyebrow mb-5'>
           Benvenuti a Spaichingen
         </p>
         <h2 className='font-display text-4xl md:text-6xl leading-tight mb-8 text-cream'>
@@ -282,10 +282,10 @@ function MainContent() {
       {/* Spezialitäten */}
       <section id='spezialitaeten' className='py-16 md:py-24'>
         <div className='text-center mb-14' data-reveal>
-          <p className='text-terracotta tracking-[0.35em] text-sm mb-4 uppercase'>
+          <p className='eyebrow mb-5'>
             Le nostre specialità
           </p>
-          <h3 className='font-display text-3xl md:text-5xl text-cream'>
+          <h3 className='font-display font-semibold text-4xl md:text-5xl text-gold-soft'>
             Unsere Spezialitäten
           </h3>
         </div>
@@ -295,7 +295,7 @@ function MainContent() {
             <article
               key={s.name}
               data-card
-              className='group rounded-2xl overflow-hidden bg-cocoa-light ring-1 ring-cream/10 hover:ring-gold/40 transition-shadow duration-500'
+              className='group rounded-2xl overflow-hidden menu-card ring-1 ring-cream/10 hover:ring-gold/40 transition-shadow duration-500'
             >
               <div className='relative h-52 overflow-hidden'>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -323,10 +323,10 @@ function MainContent() {
       {/* Speisekarte */}
       <section id='speisekarte' className='py-16 md:py-24'>
         <div className='text-center mb-14' data-reveal>
-          <p className='text-gold tracking-[0.35em] text-sm mb-4 uppercase'>
+          <p className='eyebrow mb-5'>
             Il nostro menù
           </p>
-          <h3 className='font-display text-3xl md:text-5xl text-cream'>
+          <h3 className='font-display font-semibold text-4xl md:text-5xl text-gold-soft'>
             Unsere Speisekarte
           </h3>
         </div>
@@ -336,24 +336,24 @@ function MainContent() {
             <div
               key={kat.kategorie}
               data-card
-              className='rounded-2xl bg-cocoa-light ring-1 ring-cream/10 p-8'
+              className='rounded-2xl menu-card ring-1 ring-cream/10 p-8'
             >
-              <h4 className='font-display italic text-3xl text-sand mb-6 text-center'>
+              <h4 className='font-display font-semibold text-3xl text-gold-soft mb-6 text-center'>
                 {kat.kategorie}
               </h4>
-              <ul className='space-y-5'>
+              <ul className='space-y-4'>
                 {kat.items.map((item) => (
-                  <li key={item.nr}>
+                  <li key={item.nr} className='border-b border-gold/10 pb-4 last:border-0 last:pb-0'>
                     <div className='flex items-baseline gap-3'>
-                      <span className='text-cream/40 text-xs shrink-0 w-7'>
+                      <span className='text-pistachio text-xs shrink-0 w-7'>
                         {item.nr}.
                       </span>
                       <span className='font-display text-lg text-cream'>
                         {item.name}
                       </span>
-                      <span className='flex-1 border-b border-dotted border-cream/25 translate-y-[-4px]' />
-                      <span className='font-display text-lg text-gold shrink-0'>
-                        {item.preis} €
+                      <span className='flex-1' />
+                      <span className='font-display text-lg text-gold-soft shrink-0'>
+                        € {item.preis}
                       </span>
                     </div>
                     <p className='text-sm text-cream/60 leading-relaxed mt-1 pl-10'>
@@ -368,19 +368,19 @@ function MainContent() {
           {/* Tagliere-Highlight */}
           <div
             data-card
-            className='rounded-2xl bg-gradient-to-br from-terracotta/25 to-cocoa-light ring-1 ring-gold/30 p-8 flex flex-col items-center justify-center text-center'
+            className='rounded-2xl menu-card ring-1 ring-gold/40 p-8 flex flex-col items-center justify-center text-center'
           >
-            <p className='text-gold tracking-[0.3em] text-xs mb-3 uppercase'>
+            <p className='eyebrow mb-3'>
               Für den großen Appetit
             </p>
-            <h4 className='font-display italic text-3xl text-sand mb-3'>
+            <h4 className='font-display font-semibold text-3xl text-gold-soft mb-3'>
               Tagliere della Casa
             </h4>
             <p className='text-cream/70 mb-4 max-w-xs'>
               Italienische Spezialitäten: Aufschnitt, Käse und Gemüse – perfekt
               zum Teilen.
             </p>
-            <p className='font-display text-3xl text-gold'>25,00 €</p>
+            <p className='font-display text-3xl text-gold'>€ 25,00</p>
             <p className='text-cream/40 text-xs mt-1'>Nr. 460</p>
           </div>
         </div>
@@ -394,10 +394,10 @@ function MainContent() {
       {/* Galerie mit Parallax */}
       <section id='galerie' className='py-16 md:py-24 space-y-10'>
         <div className='text-center mb-4' data-reveal>
-          <p className='text-pistachio tracking-[0.35em] text-sm mb-4 uppercase'>
+          <p className='eyebrow mb-5'>
             Impressioni
           </p>
-          <h3 className='font-display text-3xl md:text-5xl text-cream'>
+          <h3 className='font-display font-semibold text-4xl md:text-5xl text-gold-soft'>
             Ein Vorgeschmack
           </h3>
         </div>
@@ -439,10 +439,10 @@ function MainContent() {
       {/* Kontakt & Öffnungszeiten */}
       <section id='kontakt' className='py-16 md:py-24'>
         <div className='text-center mb-14' data-reveal>
-          <p className='text-gold tracking-[0.35em] text-sm mb-4 uppercase'>
+          <p className='eyebrow mb-5'>
             Vieni a trovarci
           </p>
-          <h3 className='font-display text-3xl md:text-5xl text-cream'>
+          <h3 className='font-display font-semibold text-4xl md:text-5xl text-gold-soft'>
             Besuch uns am Marktplatz
           </h3>
         </div>
@@ -450,7 +450,7 @@ function MainContent() {
         <div className='grid grid-cols-1 md:grid-cols-3 gap-6 text-center'>
           <div
             data-card
-            className='rounded-2xl bg-cocoa-light ring-1 ring-cream/10 p-8'
+            className='rounded-2xl menu-card ring-1 ring-cream/10 p-8'
           >
             <h4 className='font-display text-xl text-sand mb-3'>Adresse</h4>
             <p className='text-cream/80 leading-relaxed'>
@@ -463,7 +463,7 @@ function MainContent() {
               href='https://maps.google.com/?q=Oasi+del+Gusto,+Marktplatz+9,+78549+Spaichingen'
               target='_blank'
               rel='noopener noreferrer'
-              className='inline-block mt-4 text-gold hover:text-sand underline underline-offset-4 transition-colors'
+              className='btn-pill mt-5'
             >
               Route planen →
             </a>
@@ -471,7 +471,7 @@ function MainContent() {
 
           <div
             data-card
-            className='rounded-2xl bg-cocoa-light ring-1 ring-cream/10 p-8'
+            className='rounded-2xl menu-card ring-1 ring-cream/10 p-8'
           >
             <h4 className='font-display text-xl text-sand mb-3'>
               Öffnungszeiten
@@ -491,7 +491,7 @@ function MainContent() {
 
           <div
             data-card
-            className='rounded-2xl bg-cocoa-light ring-1 ring-cream/10 p-8'
+            className='rounded-2xl menu-card ring-1 ring-cream/10 p-8'
           >
             <h4 className='font-display text-xl text-sand mb-3'>Kontakt</h4>
             <p className='text-cream/80 leading-relaxed'>
