@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800">
+  <defs>
+    <radialGradient id="g1" cx="30%" cy="25%" r="90%">
+      <stop offset="0" stop-color="#c4704f"/>
+      <stop offset="1" stop-color="#7a3e2a"/>
+    </radialGradient>
+    <radialGradient id="g2" cx="75%" cy="80%" r="60%">
+      <stop offset="0" stop-color="#d9a441" stop-opacity="0.85"/>
+      <stop offset="1" stop-color="#d9a441" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#g1)"/>
+  <rect width="1200" height="800" fill="url(#g2)"/>
+  <circle cx="600" cy="360" r="150" fill="#f7f2e9" opacity="0.14"/>
+  <text x="600" y="380" text-anchor="middle" fill="#f7f2e9" opacity="0.9" font-family="Georgia, serif" font-style="italic" font-size="58">Gelato Artigianale</text>
+  <text x="600" y="432" text-anchor="middle" fill="#f7f2e9" opacity="0.55" font-family="Georgia, serif" font-size="22" letter-spacing="6">OASI DEL GUSTO</text>
+</svg>
