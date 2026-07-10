@@ -672,7 +672,20 @@
 .xhero-inner .lantern--d{left:10%;top:72%;width:90px;animation-duration:6.8s;animation-delay:-2s;}
 .xhero-inner .lantern--e{left:79%;top:38%;width:145px;animation-duration:7.6s;animation-delay:-.8s;}
 .xhero-inner .lantern--f{left:90%;top:70%;width:88px;animation-duration:5.9s;animation-delay:-3.4s;}
-@media (max-width: 900px){.xhero-inner .lantern--b,.xhero-inner .lantern--d,.xhero-inner .lantern--e{display:none;}}
+@media (max-width: 900px){.xhero-inner .lantern--b,.xhero-inner .lantern--d,.xhero-inner .lantern--e,.xhero-inner .lantern--g{display:none;}}
+/* Deutlicheres Pendeln von links nach rechts */
+@keyframes swayLR{
+  0%,100%{transform:translateX(-14px) rotate(-4.5deg);}
+  50%{transform:translateX(14px) rotate(4.5deg);}
+}
+.xhero-inner .lantern{animation-name:swayLR;}
+.xhero-inner .lantern--g{left:46%;top:3%;width:92px;animation-duration:6.1s;animation-delay:-1.7s;}
+/* Größeres Ambiente-Bild */
+@media (min-width: 981px){
+  .ambience__grid{grid-template-columns:1.55fr .9fr;}
+  .ambience-photo{min-height:520px;}
+  .ambience-photo img{height:100%;min-height:520px;}
+}
 </style>
 </head>
 <body>
@@ -780,6 +793,16 @@
         <line x1="50" y1="126" x2="50" y2="146" stroke="#C9A24B" stroke-width="1.5"/>
         <circle cx="50" cy="152" r="4" fill="#C9A24B"/>
       </svg><svg class="lantern lantern--f" viewBox="0 0 100 160" xmlns="http://www.w3.org/2000/svg">
+        <line x1="50" y1="0" x2="50" y2="18" stroke="#C9A24B" stroke-width="1.5"/>
+        <rect x="38" y="16" width="24" height="8" rx="2" fill="#3D2B1F" stroke="#C9A24B" stroke-width="1"/>
+        <ellipse class="lantern__glow" cx="50" cy="72" rx="34" ry="46" fill="url(#lanternGrad)"/>
+        <ellipse cx="50" cy="72" rx="34" ry="46" fill="none" stroke="#C9A24B" stroke-width="1.4"/>
+        <line x1="16" y1="58" x2="84" y2="58" stroke="#C9A24B" stroke-width="1"/>
+        <line x1="16" y1="86" x2="84" y2="86" stroke="#C9A24B" stroke-width="1"/>
+        <rect x="38" y="118" width="24" height="8" rx="2" fill="#3D2B1F" stroke="#C9A24B" stroke-width="1"/>
+        <line x1="50" y1="126" x2="50" y2="146" stroke="#C9A24B" stroke-width="1.5"/>
+        <circle cx="50" cy="152" r="4" fill="#C9A24B"/>
+      </svg><svg class="lantern lantern--g" viewBox="0 0 100 160" xmlns="http://www.w3.org/2000/svg">
         <line x1="50" y1="0" x2="50" y2="18" stroke="#C9A24B" stroke-width="1.5"/>
         <rect x="38" y="16" width="24" height="8" rx="2" fill="#3D2B1F" stroke="#C9A24B" stroke-width="1"/>
         <ellipse class="lantern__glow" cx="50" cy="72" rx="34" ry="46" fill="url(#lanternGrad)"/>
