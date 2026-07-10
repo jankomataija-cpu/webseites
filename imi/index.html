@@ -631,12 +631,10 @@
   /* ============ REDUCED MOTION ============ */
   @media (prefers-reduced-motion: reduce){
     html{ scroll-behavior:auto; }
-    .lantern, .lantern__glow, .steam path, .scroll-cue svg, .map-pin path{ animation:none !important; }
+    .steam path, .scroll-cue svg, .map-pin path{ animation:none !important; }
     .reveal{ opacity:1; transform:none; transition:none; }
     .divider path{ stroke-dashoffset:0; transition:none; }
   }
-  .reduced-motion .lantern,
-  .reduced-motion .lantern__glow,
   .reduced-motion .steam path,
   .reduced-motion .scroll-cue svg,
   .reduced-motion .map-pin path{ animation:none !important; }
@@ -660,7 +658,7 @@
 .marquee{white-space:nowrap;font-family:var(--font-display);font-style:italic;font-size:clamp(3rem,7vw,6rem);color:rgba(240,230,210,.12);will-change:transform;}
 .ambience-photo{overflow:hidden;}
 .ambience-photo img{display:block;}
-@media (prefers-reduced-motion: reduce){.xhero__hint{animation:none}}
+
 .nav__cta{display:flex;gap:.6rem;margin-left:1.4rem;}
 .btn--nav{padding:.5rem 1.15rem;font-size:.82rem;}
 @media (max-width: 1180px){.nav__cta{display:none;}}
@@ -1270,7 +1268,7 @@
 (function(){
   var root = document.documentElement;
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if(reduceMotion){ root.classList.add('reduced-motion'); }
+  /* Animationen laufen immer (Wunsch des Betreibers) */
 
   // Nav scroll state
   var nav = document.getElementById('siteNav');
@@ -1368,16 +1366,7 @@
   gsap.registerPlugin(ScrollTrigger);
   var mm = gsap.matchMedia();
   mm.add({reduce:'(prefers-reduced-motion: reduce)', full:'(prefers-reduced-motion: no-preference)'}, function(ctx){
-    if(ctx.conditions.reduce){
-      // Statischer, aufgeraeumter Hero: grosses Bild, kraeftige Abdunklung, Titel gut lesbar
-      gsap.set('.xhero__media', {width:'95vw', height:'86vh', borderRadius:24});
-      gsap.set('.xhero__shade', {opacity:.55});
-      gsap.set('.hero__waves, .lantern-field', {opacity:0});
-      gsap.set('.xhero__titles', {textShadow:'0 3px 18px rgba(0,0,0,.8)'});
-      var hint = document.querySelector('.xhero__hint');
-      if(hint) hint.style.display = 'none';
-      return;
-    }
+
 
     // Hero: Medium expandiert, Titel teilt sich (gepinnt, an Scroll gekoppelt)
     var tl = gsap.timeline({
