@@ -75,7 +75,41 @@ body {
     linear-gradient(150deg, #3d2b1f 0%, #241b15 70%, #1b1410 100%);
 }
 
+/* Menü-Tabs (aus der Design-Vorlage) */
+.tab-btn {
+  padding: 0.55rem 1.3rem;
+  border-radius: 999px;
+  border: 1px solid rgba(201, 162, 75, 0.45);
+  color: var(--color-sand);
+  font-size: 0.88rem;
+  letter-spacing: 0.04em;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+.tab-btn:hover {
+  background: rgba(201, 162, 75, 0.1);
+  transform: translateY(-2px);
+}
+.tab-btn.is-active {
+  background: var(--color-gold);
+  border-color: var(--color-gold);
+  color: var(--color-cocoa);
+  font-weight: 600;
+}
+
 ::selection {
   background-color: var(--color-terracotta);
   color: var(--color-cream);
+}
+
+/* Ausgefüllte Variante des Pill-Buttons (btn--solid der Vorlage) */
+.btn-pill--solid {
+  background: var(--color-gold);
+  color: var(--color-cocoa);
+  border-color: var(--color-gold);
+  font-weight: 600;
+}
+.btn-pill--solid:hover {
+  background: var(--color-gold-soft);
+  box-shadow: 0 14px 30px -12px rgba(201, 162, 75, 0.55);
 }

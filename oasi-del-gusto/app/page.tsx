@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -135,6 +135,7 @@ const speisekarte: {
       { nr: '438', name: 'Bruschetta Primavera', desc: 'Tomatenstücke, Mozzarella, Oregano, gekochter Schinken, Pilze, Artischocken', preis: '6,00' },
       { nr: '439', name: 'Bruschetta Tonno e Cipolla', desc: 'Tomatenstück, Mozzarella, Oregano, Öl, Thunfisch, Zwiebeln', preis: '6,00' },
       { nr: '440', name: 'Bruschetta Vegetariana', desc: 'Tomatenstück, Mozzarella, Oregano, gegrillte Aubergine, gegrillte Zucchini und Rucola', preis: '6,00' },
+      { nr: '460', name: 'Tagliere della Casa', desc: 'Italienische Spezialitäten: Aufschnitt, Käse und Gemüse – perfekt zum Teilen', preis: '25,00' },
     ],
   },
   {
@@ -158,7 +159,7 @@ const speisekarte: {
     ],
   },
   {
-    kategorie: 'Fladenbrot Snacks',
+    kategorie: 'Fladenbrot',
     items: [
       { nr: '610', name: 'Fladenbrot Vegetariano', desc: 'Fladenbrot mit Zucchini, Mozzarella, Tomaten, Rucola, Mayonnaise', preis: '6,50' },
       { nr: '611', name: 'Fladenbrot Valentino', desc: 'Fladenbrot belegt mit Lachs, Frischkäse, Zucchini, Rucola', preis: '6,50' },
@@ -175,8 +176,73 @@ function withFallback(fallback: string) {
   };
 }
 
+function Nav() {
+  const [open, setOpen] = useState(false);
+
+  const links = [
+    ['#start', 'Start'],
+    ['#ueber-uns', 'Über uns'],
+    ['#ambiente', 'Ambiente'],
+    ['#speisekarte', 'Speisekarte'],
+    ['#kontakt', 'Kontakt'],
+  ];
+
+  return (
+    <header className='fixed top-0 inset-x-0 z-50 bg-cocoa/85 backdrop-blur-md border-b border-gold/15'>
+      <div className='max-w-6xl mx-auto px-6 h-[68px] flex items-center justify-between'>
+        <a href='#start' className='flex items-center gap-3'>
+          <Image
+            src='logo.svg'
+            alt='Oasi del Gusto'
+            width={72}
+            height={43}
+            className='w-14 h-auto'
+          />
+          <span className='font-display font-semibold text-gold-soft text-lg tracking-wide'>
+            Oasi del Gusto
+          </span>
+        </a>
+
+        <nav className='hidden md:flex items-center gap-8 text-sm text-cream/80'>
+          {links.map(([href, label]) => (
+            <a
+              key={href}
+              href={href}
+              className='hover:text-gold-soft transition-colors'
+            >
+              {label}
+            </a>
+          ))}
+        </nav>
+
+        <button
+          className='md:hidden flex flex-col gap-1.5 p-2'
+          aria-label='Menü öffnen'
+          aria-expanded={open}
+          onClick={() => setOpen(!open)}
+        >
+          <span className='w-6 h-0.5 bg-gold-soft' />
+          <span className='w-6 h-0.5 bg-gold-soft' />
+          <span className='w-6 h-0.5 bg-gold-soft' />
+        </button>
+      </div>
+
+      {open && (
+        <nav className='md:hidden bg-cocoa/95 border-t border-gold/15 px-6 py-4 flex flex-col gap-4 text-cream/85'>
+          {links.map(([href, label]) => (
+            <a key={href} href={href} onClick={() => setOpen(false)}>
+              {label}
+            </a>
+          ))}
+        </nav>
+      )}
+    </header>
+  );
+}
+
 function MainContent() {
   const mainRef = useRef<HTMLDivElement | null>(null);
+  const [activeTab, setActiveTab] = useState(0);
 
   useGSAP(
     () => {
@@ -190,12 +256,12 @@ function MainContent() {
         (ctx) => {
           if (ctx.conditions?.reduceMotion) return;
 
-          // Sanftes Aufblenden von Text-Blöcken
+          // Sanftes Aufblenden von Text-Blöcken (reveal der Vorlage)
           gsap.utils.toArray<HTMLElement>('[data-reveal]').forEach((el) => {
             gsap.from(el, {
               opacity: 0,
-              y: 60,
-              duration: 1,
+              y: 28,
+              duration: 0.9,
               ease: 'power3.out',
               scrollTrigger: {
                 trigger: el,
@@ -205,7 +271,7 @@ function MainContent() {
             });
           });
 
-          // Spezialitäten-Karten gestaffelt einblenden
+          // Karten gestaffelt einblenden
           gsap.set('[data-card]', { opacity: 0, y: 50 });
           ScrollTrigger.batch('[data-card]', {
             start: 'top 88%',
@@ -221,7 +287,7 @@ function MainContent() {
               }),
           });
 
-          // Parallax auf Galerie-Bildern (scrubbed)
+          // Parallax auf Ambiente-Bildern (scrubbed)
           gsap.utils.toArray<HTMLElement>('[data-parallax]').forEach((el) => {
             const img = el.querySelector('img');
             if (!img) return;
@@ -259,32 +325,53 @@ function MainContent() {
     { scope: mainRef }
   );
 
+  // Tab-Wechsel: Panel sanft einblenden (läuft bei jeder Änderung von activeTab)
+  useGSAP(
+    () => {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      gsap.fromTo(
+        '[data-menu-panel]',
+        { opacity: 0, y: 18 },
+        { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }
+      );
+    },
+    { dependencies: [activeTab], scope: mainRef }
+  );
+
   return (
     <div ref={mainRef} className='max-w-6xl mx-auto'>
-      {/* Intro */}
-      <section className='py-10 md:py-20 text-center' data-reveal>
-        <p className='eyebrow mb-5'>
-          Benvenuti a Spaichingen
-        </p>
-        <h2 className='font-display text-4xl md:text-6xl leading-tight mb-8 text-cream'>
+      {/* Über uns (philosophy der Vorlage) */}
+      <section id='ueber-uns' className='py-10 md:py-20 text-center scroll-mt-24' data-reveal>
+        <p className='eyebrow mb-5'>Unsere Philosophie</p>
+        <h2 className='font-display font-semibold text-4xl md:text-5xl text-gold-soft leading-tight mb-8'>
           La dolce vita –<br />
-          <em className='text-sand'>hausgemacht, jeden Tag.</em>
+          hausgemacht, jeden Tag.
         </h2>
-        <p className='max-w-2xl mx-auto text-lg md:text-xl text-cream/80 leading-relaxed'>
-          Im Herzen von Spaichingen, direkt am Marktplatz, verwöhnt euch die
-          Familie Cantisano mit italienischem Eis aus{' '}
-          <strong className='text-cream'>eigener Produktion</strong> – täglich
-          frisch, aus natürlichen Zutaten. Dazu duftender Espresso, hausgemachte
-          Dolci und echtes italienisches Lebensgefühl.
+        <p className='max-w-2xl mx-auto text-lg text-cream/80 leading-relaxed mb-4'>
+          Oasi del Gusto entstand aus der Überzeugung, dass echtes italienisches
+          Eis keine Kompromisse kennt. Familie Cantisano stellt jede Sorte
+          selbst her – täglich frisch, aus natürlichen Zutaten, mitten in
+          Spaichingen.
         </p>
+        <p className='max-w-2xl mx-auto text-lg text-cream/80 leading-relaxed mb-10'>
+          Jeder Tag beginnt, wenn die Eistheke gefüllt wird: ein stilles
+          Zeichen, dass der Sommer eröffnet ist – dazu duftender Espresso,
+          hausgemachte Dolci und ein Platz an der Sonne am Marktplatz.
+        </p>
+        <div className='flex flex-wrap justify-center gap-4'>
+          <a href='#speisekarte' className='btn-pill btn-pill--solid'>
+            Speisekarte entdecken
+          </a>
+          <a href='#kontakt' className='btn-pill'>
+            Besuch uns
+          </a>
+        </div>
       </section>
 
       {/* Spezialitäten */}
-      <section id='spezialitaeten' className='py-16 md:py-24'>
+      <section id='spezialitaeten' className='py-16 md:py-24 scroll-mt-24'>
         <div className='text-center mb-14' data-reveal>
-          <p className='eyebrow mb-5'>
-            Le nostre specialità
-          </p>
+          <p className='eyebrow mb-5'>Le nostre specialità</p>
           <h3 className='font-display font-semibold text-4xl md:text-5xl text-gold-soft'>
             Unsere Spezialitäten
           </h3>
@@ -308,7 +395,7 @@ function MainContent() {
                 />
               </div>
               <div className='p-6'>
-                <h4 className='font-display text-xl mb-2 text-sand'>
+                <h4 className='font-display font-semibold text-xl mb-2 text-gold-soft'>
                   {s.name}
                 </h4>
                 <p className='text-sm text-cream/70 leading-relaxed'>
@@ -320,85 +407,12 @@ function MainContent() {
         </div>
       </section>
 
-      {/* Speisekarte */}
-      <section id='speisekarte' className='py-16 md:py-24'>
-        <div className='text-center mb-14' data-reveal>
-          <p className='eyebrow mb-5'>
-            Il nostro menù
-          </p>
-          <h3 className='font-display font-semibold text-4xl md:text-5xl text-gold-soft'>
-            Unsere Speisekarte
-          </h3>
-        </div>
-
-        <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
-          {speisekarte.map((kat) => (
-            <div
-              key={kat.kategorie}
-              data-card
-              className='rounded-2xl menu-card ring-1 ring-cream/10 p-8'
-            >
-              <h4 className='font-display font-semibold text-3xl text-gold-soft mb-6 text-center'>
-                {kat.kategorie}
-              </h4>
-              <ul className='space-y-4'>
-                {kat.items.map((item) => (
-                  <li key={item.nr} className='border-b border-gold/10 pb-4 last:border-0 last:pb-0'>
-                    <div className='flex items-baseline gap-3'>
-                      <span className='text-pistachio text-xs shrink-0 w-7'>
-                        {item.nr}.
-                      </span>
-                      <span className='font-display text-lg text-cream'>
-                        {item.name}
-                      </span>
-                      <span className='flex-1' />
-                      <span className='font-display text-lg text-gold-soft shrink-0'>
-                        € {item.preis}
-                      </span>
-                    </div>
-                    <p className='text-sm text-cream/60 leading-relaxed mt-1 pl-10'>
-                      {item.desc}
-                    </p>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-
-          {/* Tagliere-Highlight */}
-          <div
-            data-card
-            className='rounded-2xl menu-card ring-1 ring-gold/40 p-8 flex flex-col items-center justify-center text-center'
-          >
-            <p className='eyebrow mb-3'>
-              Für den großen Appetit
-            </p>
-            <h4 className='font-display font-semibold text-3xl text-gold-soft mb-3'>
-              Tagliere della Casa
-            </h4>
-            <p className='text-cream/70 mb-4 max-w-xs'>
-              Italienische Spezialitäten: Aufschnitt, Käse und Gemüse – perfekt
-              zum Teilen.
-            </p>
-            <p className='font-display text-3xl text-gold'>€ 25,00</p>
-            <p className='text-cream/40 text-xs mt-1'>Nr. 460</p>
-          </div>
-        </div>
-
-        <p className='text-center text-cream/40 text-sm mt-8' data-reveal>
-          Alle Angaben zu Allergenen und Zusatzstoffen findest du in der Karte
-          vor Ort. Saisonale Gerichte je nach Verfügbarkeit.
-        </p>
-      </section>
-
-      {/* Galerie mit Parallax */}
-      <section id='galerie' className='py-16 md:py-24 space-y-10'>
+      {/* Ambiente (mit Parallax) */}
+      <section id='ambiente' className='py-16 md:py-24 space-y-10 scroll-mt-24'>
         <div className='text-center mb-4' data-reveal>
-          <p className='eyebrow mb-5'>
-            Impressioni
-          </p>
+          <p className='eyebrow mb-5'>Ambiente</p>
           <h3 className='font-display font-semibold text-4xl md:text-5xl text-gold-soft'>
-            Ein Vorgeschmack
+            Warmes Licht, offene Türen
           </h3>
         </div>
 
@@ -425,6 +439,69 @@ function MainContent() {
         ))}
       </section>
 
+      {/* Speisekarte mit Tabs (wie die Vorlage) */}
+      <section id='speisekarte' className='py-16 md:py-24 scroll-mt-24'>
+        <div className='text-center mb-10' data-reveal>
+          <p className='eyebrow mb-5'>Il nostro menù</p>
+          <h3 className='font-display font-semibold text-4xl md:text-5xl text-gold-soft'>
+            Unsere Speisekarte
+          </h3>
+        </div>
+
+        <div
+          className='flex flex-wrap justify-center gap-2.5 mb-10'
+          role='tablist'
+          aria-label='Speisekarten-Kategorien'
+        >
+          {speisekarte.map((kat, i) => (
+            <button
+              key={kat.kategorie}
+              role='tab'
+              aria-selected={i === activeTab}
+              className={`tab-btn ${i === activeTab ? 'is-active' : ''}`}
+              onClick={() => setActiveTab(i)}
+            >
+              {kat.kategorie}
+            </button>
+          ))}
+        </div>
+
+        <div data-menu-panel className='max-w-3xl mx-auto'>
+          <h4 className='font-display font-semibold text-3xl text-gold-soft mb-6 text-center'>
+            {speisekarte[activeTab].kategorie}
+          </h4>
+          <div className='flex flex-col'>
+            {speisekarte[activeTab].items.map((item) => (
+              <div
+                key={item.nr}
+                className='py-4 border-b border-gold/10 last:border-0'
+              >
+                <div className='flex justify-between items-baseline gap-4'>
+                  <span className='font-display text-lg text-cream'>
+                    <span className='inline-block min-w-[2.4em] text-pistachio text-sm'>
+                      {item.nr}
+                    </span>
+                    {item.name}
+                  </span>
+                  <span className='font-display text-lg text-gold-soft shrink-0'>
+                    {item.preis} €
+                  </span>
+                </div>
+                <p className='text-sm text-cream/60 leading-relaxed mt-1 pl-[3.2em]'>
+                  {item.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <p className='text-center text-cream/40 text-sm mt-10' data-reveal>
+          Alle Angaben zu Allergenen und Zusatzstoffen findest du in der Karte
+          vor Ort. Saisonale Gerichte je nach Verfügbarkeit. Weitere Kategorien
+          folgen in Kürze.
+        </p>
+      </section>
+
       {/* Marquee */}
       <div data-marquee-wrap className='py-16 overflow-hidden' aria-hidden>
         <div
@@ -436,14 +513,12 @@ function MainContent() {
         </div>
       </div>
 
-      {/* Kontakt & Öffnungszeiten */}
-      <section id='kontakt' className='py-16 md:py-24'>
+      {/* Kontakt (visit der Vorlage) */}
+      <section id='kontakt' className='py-16 md:py-24 scroll-mt-24'>
         <div className='text-center mb-14' data-reveal>
-          <p className='eyebrow mb-5'>
-            Vieni a trovarci
-          </p>
+          <p className='eyebrow mb-5'>Standort &amp; Öffnungszeiten</p>
           <h3 className='font-display font-semibold text-4xl md:text-5xl text-gold-soft'>
-            Besuch uns am Marktplatz
+            Wir freuen uns auf deinen Besuch
           </h3>
         </div>
 
@@ -452,7 +527,9 @@ function MainContent() {
             data-card
             className='rounded-2xl menu-card ring-1 ring-cream/10 p-8'
           >
-            <h4 className='font-display text-xl text-sand mb-3'>Adresse</h4>
+            <h4 className='font-display font-semibold text-xl text-gold-soft mb-3'>
+              Adresse
+            </h4>
             <p className='text-cream/80 leading-relaxed'>
               Oasi del Gusto
               <br />
@@ -465,7 +542,7 @@ function MainContent() {
               rel='noopener noreferrer'
               className='btn-pill mt-5'
             >
-              Route planen →
+              Route planen
             </a>
           </div>
 
@@ -473,7 +550,7 @@ function MainContent() {
             data-card
             className='rounded-2xl menu-card ring-1 ring-cream/10 p-8'
           >
-            <h4 className='font-display text-xl text-sand mb-3'>
+            <h4 className='font-display font-semibold text-xl text-gold-soft mb-3'>
               Öffnungszeiten
             </h4>
             <p className='text-cream/80 leading-relaxed'>
@@ -493,13 +570,15 @@ function MainContent() {
             data-card
             className='rounded-2xl menu-card ring-1 ring-cream/10 p-8'
           >
-            <h4 className='font-display text-xl text-sand mb-3'>Kontakt</h4>
+            <h4 className='font-display font-semibold text-xl text-gold-soft mb-3'>
+              Kontakt
+            </h4>
             <p className='text-cream/80 leading-relaxed'>
               Ruf uns einfach an:
               <br />
               <a
                 href='tel:+4974249568580'
-                className='text-2xl font-display text-cream hover:text-gold transition-colors'
+                className='text-2xl font-display text-cream hover:text-gold-soft transition-colors'
               >
                 07424 956 85 80
               </a>
@@ -535,7 +614,8 @@ function MainContent() {
 
 export default function Home() {
   return (
-    <main className='min-h-screen bg-cocoa'>
+    <main id='start' className='min-h-screen bg-cocoa'>
+      <Nav />
       <ScrollExpandMedia
         mediaType='image'
         mediaSrc={IMG.heroMedia}
@@ -544,7 +624,7 @@ export default function Home() {
         bgFallbackSrc='images/fallback-bg.svg'
         logoSrc='logo.svg'
         title='Oasi del Gusto'
-        date='Gelateria · Caffè · Spaichingen'
+        date='Gelato · Caffè · Dolce Vita'
         scrollToExpand='Scrollen zum Entdecken'
       >
         <MainContent />
