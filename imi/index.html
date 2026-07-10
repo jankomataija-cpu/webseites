@@ -1369,9 +1369,11 @@
   var mm = gsap.matchMedia();
   mm.add({reduce:'(prefers-reduced-motion: reduce)', full:'(prefers-reduced-motion: no-preference)'}, function(ctx){
     if(ctx.conditions.reduce){
+      // Statischer, aufgeraeumter Hero: grosses Bild, kraeftige Abdunklung, Titel gut lesbar
       gsap.set('.xhero__media', {width:'95vw', height:'86vh', borderRadius:24});
-      gsap.set('.xhero__shade', {opacity:.15});
+      gsap.set('.xhero__shade', {opacity:.55});
       gsap.set('.hero__waves, .lantern-field', {opacity:0});
+      gsap.set('.xhero__titles', {textShadow:'0 3px 18px rgba(0,0,0,.8)'});
       var hint = document.querySelector('.xhero__hint');
       if(hint) hint.style.display = 'none';
       return;
