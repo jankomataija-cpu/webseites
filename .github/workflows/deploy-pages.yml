@@ -28,6 +28,8 @@ jobs:
       - name: Seite bauen
         run: npm run build
         working-directory: oasi-del-gusto
+      - name: I.MI-Seite unter /imi/ mitveröffentlichen
+        run: cp -r imi-asia-cuisine oasi-del-gusto/out/imi
       - name: Auf GitHub Pages veröffentlichen (gh-pages Branch)
         uses: peaceiris/actions-gh-pages@v4
         with:
