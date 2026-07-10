@@ -661,6 +661,18 @@
 .ambience-photo{overflow:hidden;}
 .ambience-photo img{display:block;}
 @media (prefers-reduced-motion: reduce){.xhero__hint{animation:none}}
+.nav__cta{display:flex;gap:.6rem;margin-left:1.4rem;}
+.btn--nav{padding:.5rem 1.15rem;font-size:.82rem;}
+@media (max-width: 1180px){.nav__cta{display:none;}}
+/* Laternen: an die Ränder, größer, mit goldenem Schein */
+.xhero-inner .lantern{filter:drop-shadow(0 18px 30px rgba(0,0,0,.45)) drop-shadow(0 0 28px rgba(201,162,75,.5));}
+.xhero-inner .lantern--a{left:5%;top:7%;width:135px;}
+.xhero-inner .lantern--b{left:19%;top:44%;width:110px;}
+.xhero-inner .lantern--c{left:88%;top:5%;width:105px;}
+.xhero-inner .lantern--d{left:10%;top:72%;width:90px;animation-duration:6.8s;animation-delay:-2s;}
+.xhero-inner .lantern--e{left:79%;top:38%;width:145px;animation-duration:7.6s;animation-delay:-.8s;}
+.xhero-inner .lantern--f{left:90%;top:70%;width:88px;animation-duration:5.9s;animation-delay:-3.4s;}
+@media (max-width: 900px){.xhero-inner .lantern--b,.xhero-inner .lantern--d,.xhero-inner .lantern--e{display:none;}}
 </style>
 </head>
 <body>
@@ -688,7 +700,11 @@
       <a href="#speisekarte">Speisekarte</a>
       <a href="#kontakt">Standort</a>
     </nav>
-    <button class="burger" id="burgerBtn" aria-label="Menü öffnen" aria-expanded="false">
+    <div class="nav__cta">
+        <a href="#speisekarte" class="btn btn--solid btn--nav">Speisekarte entdecken</a>
+        <a href="#kontakt" class="btn btn--ghost btn--nav">Tisch anfragen</a>
+      </div>
+      <button class="burger" id="burgerBtn" aria-label="Menü öffnen" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -743,6 +759,36 @@
         <rect x="38" y="118" width="24" height="8" rx="2" fill="#3D2B1F" stroke="#C9A24B" stroke-width="1"/>
         <line x1="50" y1="126" x2="50" y2="146" stroke="#C9A24B" stroke-width="1.5"/>
         <circle cx="50" cy="152" r="4" fill="#C9A24B"/>
+      </svg><svg class="lantern lantern--d" viewBox="0 0 100 160" xmlns="http://www.w3.org/2000/svg">
+        <line x1="50" y1="0" x2="50" y2="18" stroke="#C9A24B" stroke-width="1.5"/>
+        <rect x="38" y="16" width="24" height="8" rx="2" fill="#3D2B1F" stroke="#C9A24B" stroke-width="1"/>
+        <ellipse class="lantern__glow" cx="50" cy="72" rx="34" ry="46" fill="url(#lanternGrad)"/>
+        <ellipse cx="50" cy="72" rx="34" ry="46" fill="none" stroke="#C9A24B" stroke-width="1.4"/>
+        <line x1="16" y1="58" x2="84" y2="58" stroke="#C9A24B" stroke-width="1"/>
+        <line x1="16" y1="86" x2="84" y2="86" stroke="#C9A24B" stroke-width="1"/>
+        <rect x="38" y="118" width="24" height="8" rx="2" fill="#3D2B1F" stroke="#C9A24B" stroke-width="1"/>
+        <line x1="50" y1="126" x2="50" y2="146" stroke="#C9A24B" stroke-width="1.5"/>
+        <circle cx="50" cy="152" r="4" fill="#C9A24B"/>
+      </svg><svg class="lantern lantern--e" viewBox="0 0 100 160" xmlns="http://www.w3.org/2000/svg">
+        <line x1="50" y1="0" x2="50" y2="18" stroke="#C9A24B" stroke-width="1.5"/>
+        <rect x="38" y="16" width="24" height="8" rx="2" fill="#3D2B1F" stroke="#C9A24B" stroke-width="1"/>
+        <ellipse class="lantern__glow" cx="50" cy="72" rx="34" ry="46" fill="url(#lanternGrad)"/>
+        <ellipse cx="50" cy="72" rx="34" ry="46" fill="none" stroke="#C9A24B" stroke-width="1.4"/>
+        <line x1="16" y1="58" x2="84" y2="58" stroke="#C9A24B" stroke-width="1"/>
+        <line x1="16" y1="86" x2="84" y2="86" stroke="#C9A24B" stroke-width="1"/>
+        <rect x="38" y="118" width="24" height="8" rx="2" fill="#3D2B1F" stroke="#C9A24B" stroke-width="1"/>
+        <line x1="50" y1="126" x2="50" y2="146" stroke="#C9A24B" stroke-width="1.5"/>
+        <circle cx="50" cy="152" r="4" fill="#C9A24B"/>
+      </svg><svg class="lantern lantern--f" viewBox="0 0 100 160" xmlns="http://www.w3.org/2000/svg">
+        <line x1="50" y1="0" x2="50" y2="18" stroke="#C9A24B" stroke-width="1.5"/>
+        <rect x="38" y="16" width="24" height="8" rx="2" fill="#3D2B1F" stroke="#C9A24B" stroke-width="1"/>
+        <ellipse class="lantern__glow" cx="50" cy="72" rx="34" ry="46" fill="url(#lanternGrad)"/>
+        <ellipse cx="50" cy="72" rx="34" ry="46" fill="none" stroke="#C9A24B" stroke-width="1.4"/>
+        <line x1="16" y1="58" x2="84" y2="58" stroke="#C9A24B" stroke-width="1"/>
+        <line x1="16" y1="86" x2="84" y2="86" stroke="#C9A24B" stroke-width="1"/>
+        <rect x="38" y="118" width="24" height="8" rx="2" fill="#3D2B1F" stroke="#C9A24B" stroke-width="1"/>
+        <line x1="50" y1="126" x2="50" y2="146" stroke="#C9A24B" stroke-width="1.5"/>
+        <circle cx="50" cy="152" r="4" fill="#C9A24B"/>
       </svg>
 
       <svg width="0" height="0">
@@ -786,11 +832,7 @@
       </svg>
     </div>
   </div>
-<div class="hero__cta" style="margin-top:2.2rem">
-        <a href="#speisekarte" class="btn btn--solid">Speisekarte entdecken</a>
-        <a href="#kontakt" class="btn btn--ghost">Tisch anfragen</a>
-      </div>
-    </section>
+</section>
 
 <!-- ============ AMBIENTE ============ -->
 <section class="ambience" id="ambiente">
@@ -1303,11 +1345,18 @@
   gsap.registerPlugin(ScrollTrigger);
   var mm = gsap.matchMedia();
   mm.add({reduce:'(prefers-reduced-motion: reduce)', full:'(prefers-reduced-motion: no-preference)'}, function(ctx){
-    if(ctx.conditions.reduce) return;
+    if(ctx.conditions.reduce){
+      gsap.set('.xhero__media', {width:'95vw', height:'86vh', borderRadius:24});
+      gsap.set('.xhero__shade', {opacity:.15});
+      gsap.set('.hero__waves, .lantern-field', {opacity:0});
+      var hint = document.querySelector('.xhero__hint');
+      if(hint) hint.style.display = 'none';
+      return;
+    }
 
     // Hero: Medium expandiert, Titel teilt sich (gepinnt, an Scroll gekoppelt)
     var tl = gsap.timeline({
-      scrollTrigger:{trigger:'.hero', start:'top top', end:'+=140%', scrub:1, pin:true}
+      scrollTrigger:{trigger:'.hero', start:'top top', end:'+=140%', scrub:1, pin:true, anticipatePin:1, invalidateOnRefresh:true}
     });
     tl.to('.xhero__media', {width:'95vw', height:'86vh', borderRadius:24, ease:'none'}, 0)
       .to('.xh--l', {x:function(){return -window.innerWidth*0.32;}, ease:'none'}, 0)
@@ -1328,6 +1377,7 @@
     gsap.to('.marquee', {xPercent:-30, ease:'none',
       scrollTrigger:{trigger:'.marquee-wrap', start:'top bottom', end:'bottom top', scrub:1}});
   });
+  window.addEventListener('load', function(){ ScrollTrigger.refresh(); });
 })();
 </script>
 </body>
